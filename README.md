@@ -5,7 +5,7 @@ A laid-back python UI radio player for shuffling different online radio station 
 ## Setup
 
 1. Install VLC 64 bit. And the following dependecies with pip
-   1. vlc
+   1. python-vlc
    2. tkinter (if on windows)
    3. PIL
 2. Clone the repository and open `main.py`, at the end add your streams i.e. radio stations.

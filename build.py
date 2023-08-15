@@ -20,7 +20,7 @@ buildPath = __root__.joinpath('build/')
 print(f'Check pyinstaller module ...')
 system('pip install pyinstaller')
 print(f'build {scriptPath} to {binPath}...')
-pyinstallerString = f'pyinstaller -F -n stradio --noconsole --distpath="{binPath}" -i {iconPath} {scriptPath}'
+pyinstallerString = f'pyinstaller -F -n stradio --noconsole --onefile --distpath="{binPath}" --add-data "{iconPath};." -i {iconPath} {scriptPath} '
 system(pyinstallerString)
 __root__.joinpath('stradio.spec').unlink()
 shutil.rmtree(buildPath, ignore_errors=False, onerror=None)
