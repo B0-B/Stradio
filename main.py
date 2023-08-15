@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 
 import tkinter as tk
 from tkinter import messagebox, ttk
@@ -101,7 +102,12 @@ class radio (tk.Tk):
     def buildInterface (self) -> None:
 
         self.tk.call('tk', 'scaling', int(self.dpi/72))
-        self.wm_attributes('-toolwindow', 'True')
+
+        # icon in task bar
+        ico = Image.open(self.__root__.joinpath('radio.ico'))
+        icon = ImageTk.PhotoImage(ico)
+        self.wm_iconphoto(False, icon)
+        # self.iconbitmap(self.__root__.joinpath('radio.ico'))
         
         # special for windows rendering
         if platform.system() == 'Windows':
@@ -115,14 +121,10 @@ class radio (tk.Tk):
             value = ct.c_int(value)
             set_window_attribute(hwnd, rendering_policy, ct.byref(value),ct.sizeof(value))
         
-        self.title('Stradio | '+self.radioName)
+        self.title(' Stradio | '+self.radioName)
         self.configure(bg=self.bg) 
-        self.geometry('600x100')
+        self.geometry('600x80')
         self.attributes('-alpha', self.opacity)
-        image = Image.open(self.__root__.joinpath('naxi_logo.png'))#.convert("RGB")
-        display = ImageTk.PhotoImage(image) 
-        
-        
         
         # logo = tk.Label(self, image=display)
         # logo.pack()
@@ -140,23 +142,12 @@ class radio (tk.Tk):
         nextButton = tk.Button(self,bg=self.bg, fg=self.fg, width=width, height=height, text='▶', command=self.next, borderwidth=0, highlightthickness=0)
         nextButton.pack(side=tk.RIGHT)
 
-        # stopButton = tk.Button(self,bg=self.bg, fg=self.fg, width=width,height=height, text='⏹', command=self.player.stop())
-        # stopButton.pack(side=tk.RIGHT)
-
-        # stopButton = tk.Button(self, bg=self.bg, fg=self.fg, width=width, height=height, text='⏸', command=self.player.pause())
-        # stopButton.pack(side=tk.RIGHT)
         style = ttk.Style()
         style.configure("TScale", background="#000")
         volumeSlider = ttk.Scale(self, from_=0, to=100, variable=self.volumeVar, orient=tk.HORIZONTAL, style="TScale")
         volumeSlider.pack(side=tk.RIGHT)
 
         
-
-
-        try:
-            self.iconbitmap(self.__root__.joinpath('icon.ico'))
-        except:
-            pass
     
     def getMetaData (self) -> str:
 
