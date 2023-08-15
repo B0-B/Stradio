@@ -4,8 +4,7 @@ import tkinter as tk
 from tkinter import messagebox, ttk
 from PIL import Image, ImageTk
 try:
-    import vlc
-    from vlc import Instance, EventType, Media, MediaPlayer, MediaParseFlag, Meta
+    from vlc import Instance
 except:
     messagebox.showwarning('VLC not installed', 'Please install VLC 64 bit!')
     quit()
@@ -13,7 +12,6 @@ import tkinter as tk
 import ctypes as ct
 import platform
 from traceback import print_exc
-from os import path
 from time import sleep
 from pathlib import Path
 
@@ -147,8 +145,6 @@ class radio (tk.Tk):
         volumeSlider = ttk.Scale(self, from_=0, to=100, variable=self.volumeVar, orient=tk.HORIZONTAL, style="TScale")
         volumeSlider.pack(side=tk.RIGHT)
 
-        
-    
     def getMetaData (self) -> str:
 
         '''
@@ -212,7 +208,6 @@ if __name__ == '__main__':
     streams = {
         'Naxi Love Radio': 'https://naxidigital-love128ssl.streaming.rs:8102/;stream.nsv',
         'MNM High': "http://icecast.vrtcdn.be/mnm-high.mp3",
-        'BlueRock': 'http://prem1.rockradio.com:80/bluesrock?9555ae7caa92404c73cade1d'
+        'Ego FM Rap': 'https://egofm--di--nacs-ais-lgc--0b--cdn.cast.addradio.de/egofm/rap/mp3/high/stream.mp3?ar-distributor=ffa0&_art=dj0yJmlwPTk1LjExNy4xMTAuMTk3JmlkPWljc2N4bC02anBvbmNubWImdD0xNjkyMTkzMjQxJnM9Nzg2NmYyOWMjOTc2M2VjZTdjZDE3ZDA5NDc0NDY4M2U2YThkMDliZDQ'
     }
     radio(streams)
-
